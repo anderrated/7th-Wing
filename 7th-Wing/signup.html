@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7th Wing Sign Up</title>
+</head>
+<body>
+    <div class="login-container">
+        <form id="signupForm">
+           <input type="email" name="email" id="email" placeholder="name@example.com" required />
+            <input type="password" name="pwd" id="password" placeholder="Create password" required />
+            <button type="submit">Continue</button>
+        </form>
+        <h4 id="acc-exists" onclick="goToLogin()">I already have an account</h4>
+    </div>
+    <script>
+        function goToRegister() {
+            window.location.href = "registration.html";
+        }
+
+        function goToLogin() {
+            window.location.href = "login.html";
+        }
+
+        const { ipcRenderer } = require('electron');
+
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
+            e.preventDefault(); // prevent form reload
+            
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
+
+            if (!email || !password) {
+                alert("Please enter both email and password.");
+                return;
+            }
+
+            try {
+                // send to main to insert into DB with temporary name
+                const userId = await ipcRenderer.invoke('create-user', { email, password });
+
+                // redirect to registration.html and pass user ID
+                window.location.href = `registration.html?userId=${userId}`;
+            } catch (err) {
+                console.error("Signup error: ", err);
+                alert("This email is already registered.");
+            }
+        });
+    </script>
+</body>
+</html>

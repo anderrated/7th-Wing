@@ -1,0 +1,30 @@
+{
+  "name": "7th-wing",
+  "version": "1.0.0",
+  "description": "This desktop app is a habit tracker infused with a dragon pet system.",
+  "keywords": [
+    "habit",
+    "dragon",
+    "pet",
+    "tracker"
+  ],
+  "homepage": "https://github.com/anderrated/7th-Wing#readme",
+  "bugs": {
+    "url": "https://github.com/anderrated/7th-Wing/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anderrated/7th-Wing.git"
+  },
+  "license": "MIT",
+  "author": "Andrea Laserna",
+  "type": "commonjs",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "sqlite3": "^5.1.7"
+  }
+}

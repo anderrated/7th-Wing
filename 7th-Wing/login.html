@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7th Wing Login</title>
+</head>
+<body>
+    <div class="login-container">
+        <form action="#" method="POST" onsubmit=" return addNameToForm()">
+            <input type="email"  name= "email" id="email" placeholder="name@example.com"/>
+            <input type="password" name= "pwd" id="password" placeholder="create password"/>
+            <button type="submit">Continue</button> 
+        </form>
+    </div>
+    <h4 id="register" onclick="goToSignUp()">Create a new account</h4>
+
+    <script>
+        function goToSignUp() {
+            window.location.href = "signup.html"; 
+        }
+    </script>
+</body>
+</html>

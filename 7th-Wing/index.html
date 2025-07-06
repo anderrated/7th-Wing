@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <meta
+      http-equiv="X-Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <title>7th Wing</title>
+    <link rel="stylesheet" href="habitStyles.css">
+  </head>
+  <body>
+    <section class="habits-container">
+        <h1>Habits List</h1>
+        <div class="habits-list">
+            <ul>
+               <li>habit 1</li>
+               <li>habit 2</li>
+               <li>habit 3</li>
+            </ul>
+        </div>
+        <button class="add-habit" id="add-habit">Add New Habit</button>
+    </section>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="pet.html">Pet</a>
+        <a href="stats.html">Stats</a>
+        <a href="settings.html">Settings</a>
+    </nav>
+
+    <form id="habit-form" method="post" class="form hidden">
+        <div class="habit-popup">
+            <span id="close-popup" class="close">x</span>
+            <h2>Add a new habit</h2>
+            <label for="habitTitle">Habit Title:</label>
+            <input type="text" name="title" id="habit-title" placeholder="Type your new habit here..." required />
+            <span id="name-error" class="error"></span><br>
+            <button type="submit" id="save-habit">Save Habit</button>
+        </div>
+    </form>
+    <script src="habit.js"></script>
+  </body>
+</html>
