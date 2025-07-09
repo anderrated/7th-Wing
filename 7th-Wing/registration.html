@@ -9,14 +9,46 @@
     <div class="register-container">
         <h1>Welcome to 7th Wing!</h1>
         <h3>Let's start with your name.</h3>
-        <input type="text" id="firstName" placeholder="Type your name here..." />
-        <button onclick="goToHome()">Continue</button>
+        <form id="nameForm">
+            <input type="text" id="firstName" placeholder="Type your name here..." />
+            <!-- <button onclick="goToHome()">Continue</button> -->
+            <button type="submit">Continue</button>
+        </form>
     </div> 
 
     <script>
         function goToHome() {
             window.location.href = "index.html"
         }
+
+        const { ipcRenderer } = require('electron');
+
+        // get userId from query string
+        // extract userId from URL
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get("userId");
+
+        document.getElementById('nameForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById("firstName").value.trim();
+
+            if (!name) {
+                alert("Please enter your name to proceed.");
+                return;
+            }
+
+            try {
+                // send to main to update the DB with the name
+                const userName = await ipcRenderer.invoke('add-name', { id, name });
+
+                // redirect to index.html and pass name
+                window.location.href = `index.html?userName=${userName}`;
+            } catch (err) {
+                console.error("Name update error: ", err);
+                alert("Failed to update your name. Please try again.")
+            }
+        });
     </script>
 </body>
 </html>

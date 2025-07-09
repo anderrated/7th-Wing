@@ -18,6 +18,9 @@ async function setup() {
         email TEXT UNIQUE
         )`);
         return db; // caller main.js uses it to run the sql command
+
+    // habits
+    await db.exec(`CREATE TABLE IF NOT EXISTS `)
 }
 
 module.exports = { // allows main.js to use the functions
